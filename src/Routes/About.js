@@ -1,29 +1,16 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Context, ContextTimer } from '../Hooks/Context';
+import Timers from '../Components/Timers';
 
-function About() {
-  const { state } = useLocation();
-  const element = (
+const About = function () {
+  const {
+    numbers, setNumbers, todos, setTodos,
+  } = useContext(ContextTimer);
+  const { setTitle } = useContext(Context);
+  Timers(numbers, setNumbers, todos, setTodos);
+  setTitle('Know me...');
+  return (
     <div className="About">
-      <navbar className="Navegation">
-        <ul>
-          <Link
-            to="/"
-            state={{ timeres: state.timeres, position: state.position }}
-            className="Link"
-          >
-            <li>Home</li>
-          </Link>
-          <li>Know me...</li>
-          <Link
-            to="/About"
-            state={{ timeres: state.timeres, position: state.position }}
-            className="Link"
-          >
-            <li>About</li>
-          </Link>
-        </ul>
-      </navbar>
       <div className="Item">
         <div className="Image">
           <img src="foto.jpg" alt="Product" />
@@ -64,7 +51,6 @@ function About() {
       </div>
     </div>
   );
-  return element;
-}
+};
 
 export default About;

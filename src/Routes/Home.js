@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import SendProducts from '../Components/ProductCard';
+import { Context } from '../Hooks/Context';
 
 const Home = function () {
-  const element = (
+  const { setTitle } = useContext(Context);
+  setTitle('Products');
+  return (
     <div className="Home">
       <div className="Title">
-        <div className="Line" />
         <h3>Products</h3>
       </div>
       <div className="Products">
@@ -13,7 +15,6 @@ const Home = function () {
       </div>
     </div>
   );
-  return element;
 };
 
 export default Home;

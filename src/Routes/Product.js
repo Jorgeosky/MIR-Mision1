@@ -1,30 +1,19 @@
-import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
+import Timers from '../Components/Timers';
+import { Context, ContextTimer } from '../Hooks/Context';
 
-function Product() {
+const Product = function () {
+  const {
+    numbers, setNumbers, todos, setTodos,
+  } = useContext(ContextTimer);
+  const { setTitle } = useContext(Context);
   const { state } = useLocation();
   const { data } = state;
-  const element = (
+  setTitle('About Product');
+  Timers(numbers, setNumbers, todos, setTodos);
+  return (
     <div className="Product">
-      <navbar className="Navegation">
-        <ul>
-          <Link
-            to="/"
-            state={{ timeres: state.timeres, position: state.position }}
-            className="Link"
-          >
-            <li>Home</li>
-          </Link>
-          <li>Details of Product</li>
-          <Link
-            to="/About"
-            state={{ timeres: state.timeres, position: state.position }}
-            className="Link"
-          >
-            <li>About</li>
-          </Link>
-        </ul>
-      </navbar>
       <div className="Item">
         <div className="Image">
           <img src={data.image} alt="Product" />
@@ -50,8 +39,6 @@ function Product() {
       </div>
     </div>
   );
-
-  return element;
-}
+};
 
 export default Product;
